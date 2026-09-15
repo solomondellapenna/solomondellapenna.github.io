@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>23x26 Basement Framing & Drywall Takeoff - Kansas City</title>
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --border: #e2e8f0;
+      --primary: #2563eb;
+      --primary-light: #eff6ff;
+      --success: #16a34a;
+      --success-light: #f0fdf4;
+      --warning: #d97706;
+      --warning-light: #fffbeb;
+      --info: #0284c7;
+      --info-light: #f0f9ff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text-main);
+      line-height: 1.5;
+      padding: 32px 20px;
+    }
+
+    .container {
+      max-width: 1040px;
+      margin: 0 auto;
+    }
+
+    header {
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 20px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .badge-primary { background: var(--primary-light); color: var(--primary); }
+    .badge-success { background: var(--success-light); color: var(--success); }
+    .badge-warning { background: var(--warning-light); color: var(--warning); }
+    .badge-info { background: var(--info-light); color: var(--info); }
+
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin: 8px 0;
+    }
+
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 14.5px;
+      line-height: 1.6;
+    }
+
+    .btn-print {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--primary);
+      color: #ffffff;
+      border: none;
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+    .btn-print:hover {
+      background: #1d4ed8;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+
+    .stat-card {
+      border-left: 4px solid var(--primary);
+    }
+    .stat-card.success { border-left-color: var(--success); }
+    .stat-card.warning { border-left-color: var(--warning); }
+    .stat-card.info { border-left-color: var(--info); }
+
+    .stat-val {
+      font-size: 26px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .stat-label {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+    .stat-sub {
+      font-size: 12px;
+      color: var(--success);
+      margin-top: 4px;
+      font-weight: 600;
+    }
+
+    /* Controls Strip */
+    .controls-strip {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin-bottom: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .control-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .control-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .btn-toggle-group {
+      display: inline-flex;
+      background: #f1f5f9;
+      border-radius: 6px;
+      padding: 3px;
+    }
+
+    .btn-toggle {
+      border: none;
+      background: transparent;
+      padding: 6px 14px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-muted);
+      cursor: pointer;
+      border-radius: 4px;
+      transition: all 0.15s ease;
+    }
+
+    .btn-toggle.active {
+      background: #ffffff;
+      color: var(--primary);
+      font-weight: 600;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+    }
+
+    /* Callout */
+    .callout {
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin-bottom: 24px;
+      background: var(--info-light);
+      border-left: 4px solid var(--info);
+      font-size: 13.5px;
+      color: #0369a1;
+    }
+
+    .callout h4 {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: #075985;
+    }
+
+    /* Tables */
+    .table-container {
+      overflow-x: auto;
+      margin-bottom: 24px;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 13px;
+    }
+
+    th {
+      background: #f8fafc;
+      padding: 12px 14px;
+      font-weight: 600;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+
+    td {
+      padding: 11px 14px;
+      border-bottom: 1px solid #f1f5f9;
+      color: var(--text-main);
+      vertical-align: top;
+    }
+
+    .item-desc {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      margin-top: 2px;
+      line-height: 1.35;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    .text-right { text-align: right; }
+    .text-center { text-align: center; }
+    .font-semibold { font-weight: 600; }
+    .font-mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 12px; }
+
+    /* Sequence Steps */
+    .step-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px 16px;
+    }
+    .step-num {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 2px;
+    }
+    .step-title {
+      font-size: 14.5px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .step-desc {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+
+    /* Print View Rules */
+    @media print {
+      @page {
+        size: letter;
+        margin: 14mm 12mm;
+      }
+      body {
+        background: #ffffff !important;
+        color: #000000 !important;
+        padding: 0 !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      .container {
+        max-width: 100% !important;
+      }
+      .controls-strip, .btn-print {
+        display: none !important;
+      }
+      .card, .table-container, .step-card {
+        box-shadow: none !important;
+        border: 1px solid #cbd5e1 !important;
+      }
+      .page-break-before {
+        page-break-before: always;
+      }
+      .avoid-break {
+        page-break-inside: avoid;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .grid-4, .grid-3, .grid-2 {
+        grid-template-columns: 1fr;
+      }
+      .controls-strip {
+        flex-direction: column;
+        align-items: stretch;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <span class="badge badge-info">Kansas City Metro Takeoff</span>
+          <span class="badge badge-success">34+ & 50+ Bulk Tiers Qualified</span>
+        </div>
+        <button class="btn-print" onclick="window.print()">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 6 2 18 2 18 9"></polyline>
+            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+            <rect x="6" y="14" width="12" height="8"></rect>
+          </svg>
+          Print / Save as PDF
+        </button>
+      </div>
+      <h1>23′ × 26′ Basement Framing & Drywall Breakdown</h1>
+      <p class="subtitle">
+        Turnkey material takeoff, code-compliant concrete wall assembly, and Home Depot Pro bulk price schedule for finishing an unfinished 23′ × 26′ basement space in the Kansas City metro area (Stores #3002 Midtown & #3017 KCK).
+      </p>
+    </header>
+
+    <!-- Room Geometry Summary Strip -->
+    <div class="card" style="margin-bottom: 20px; background: #ffffff; padding: 14px 18px;">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 13px;">
+        <div><strong>Room Dimensions:</strong> 23′ × 26′</div>
+        <div><strong>Perimeter:</strong> 98 Linear Feet (4 concrete foundation walls)</div>
+        <div><strong>Ceiling Area:</strong> 598 sq ft</div>
+        <div><strong>Wall Area (8′ height):</strong> 784 sq ft</div>
+        <div><strong>Total Gypsum Board:</strong> ~1,520 sq ft (48 sheets @ 4′×8′ with 10% waste)</div>
+      </div>
+    </div>
+
+    <!-- Key Metrics Strip -->
+    <div class="grid-4">
+      <div class="card stat-card success">
+        <div class="stat-val" id="stat-grand-total">$2,801.88</div>
+        <div class="stat-label">Turnkey DIY Materials (Bulk)</div>
+        <div class="stat-sub" id="stat-savings-sub">Saves $308.06 vs Unit Retail</div>
+      </div>
+      <div class="card stat-card info">
+        <div class="stat-val" id="stat-framing">$595.40</div>
+        <div class="stat-label">Perimeter Framing (98 LF)</div>
+        <div class="stat-sub">113 SPF + 13 PT 2×4 boards</div>
+      </div>
+      <div class="card stat-card info">
+        <div class="stat-val" id="stat-insulation">$1,115.44</div>
+        <div class="stat-label">Foundation XPS Barrier</div>
+        <div class="stat-sub">25 sheets FOAMULAR R-7.5</div>
+      </div>
+      <div class="card stat-card warning">
+        <div class="stat-val" id="stat-drywall">$1,091.04</div>
+        <div class="stat-label">Drywall & Finish (1,520 sq ft)</div>
+        <div class="stat-sub">48 sheets (34+ lift discount)</div>
+      </div>
+    </div>
+
+    <!-- Interactive Configurator (Web Mode) -->
+    <div class="controls-strip">
+      <div class="control-group">
+        <span class="control-label">Pricing Tier:</span>
+        <div class="btn-toggle-group">
+          <button class="btn-toggle active" id="btn-bulk" onclick="setPricingMode('bulk')">HD Bulk / Pro Pricing</button>
+          <button class="btn-toggle" id="btn-retail" onclick="setPricingMode('retail')">HD Unit Retail</button>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <span class="control-label">Foundation Barrier:</span>
+        <div class="btn-toggle-group">
+          <button class="btn-toggle active" id="btn-foam-15" onclick="setFoamType('1.5')">1.5″ R-7.5 XPS</button>
+          <button class="btn-toggle" id="btn-foam-20" onclick="setFoamType('2.0')">2.0″ R-10 XPS</button>
+          <button class="btn-toggle" id="btn-foam-none" onclick="setFoamType('none')">Pre-Insulated</button>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <span class="control-label">Wall Drywall:</span>
+        <div class="btn-toggle-group">
+          <button class="btn-toggle active" id="btn-board-moisture" onclick="setBoardType('moisture')">Mold Tough</button>
+          <button class="btn-toggle" id="btn-board-standard" onclick="setBoardType('standard')">Standard UltraLight</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bulk Tier Callout -->
+    <div class="callout avoid-break">
+      <h4>Kansas City Metro Home Depot Volume Discount Rules (Stores #3002 Midtown & #3017 KCK)</h4>
+      <p style="margin-bottom: 6px;">
+        Because this 23′ × 26′ space requires large quantities, purchasing through the Pro Desk or online triggers automatic tier discounts:
+      </p>
+      <ul style="padding-left: 20px; line-height: 1.6;">
+        <li><strong>SPF 2×4 Framing Studs:</strong> 113 boards exceeds the <strong>Buy 50+</strong> tier, reducing price from $3.85 to <strong>$3.47</strong> each.</li>
+        <li><strong>Gypsum Drywall:</strong> 48 sheets exceeds the <strong>Buy 34+</strong> (full lift) tier, reducing 1/2″ UltraLight from $15.58 to <strong>$13.24</strong> and Mold Tough from $21.85 to <strong>$18.57</strong>.</li>
+        <li><strong>Owens Corning FOAMULAR NGX:</strong> 25 sheets exceeds the <strong>Buy 10+</strong> volume tier ($40.48 for 1.5″ R-7.5 vs $44.98 retail).</li>
+        <li><strong>Jobsite Delivery:</strong> At ~3,600 lbs total weight, schedule Home Depot flatbed jobsite truck delivery ($79–$89 flat across the KC metro) directly to your driveway.</li>
+      </ul>
+    </div>
+
+    <!-- Visual Charts: Bar Comparison + Donut Distribution -->
+    <div class="grid-2 avoid-break" style="margin-bottom: 24px;">
+      <!-- Side-by-Side Visual Bar Chart (Pure SVG) -->
+      <div class="card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <div>
+            <h3 style="font-size: 15px; font-weight: 700;">Bulk vs. Retail Comparison</h3>
+            <p style="font-size: 12px; color: var(--text-muted);">Kansas City Home Depot pricing by phase</p>
+          </div>
+          <span class="badge badge-success" id="chart-savings-badge">Save $308.06</span>
+        </div>
+
+        <svg viewBox="0 0 460 220" style="width: 100%; height: auto; font-family: inherit;">
+          <!-- Axes -->
+          <line x1="110" y1="15" x2="110" y2="180" stroke="#cbd5e1" stroke-width="1.2" />
+          <line x1="110" y1="180" x2="445" y2="180" stroke="#cbd5e1" stroke-width="1.2" />
+
+          <!-- Grid ticks (0 to 3500) -->
+          <g stroke="#f1f5f9" stroke-width="1" stroke-dasharray="3,3">
+            <line x1="205" y1="15" x2="205" y2="180" />
+            <line x1="301" y1="15" x2="301" y2="180" />
+            <line x1="397" y1="15" x2="397" y2="180" />
+          </g>
+          <g font-size="10" fill="#64748b" text-anchor="middle">
+            <text x="110" y="196">$0</text>
+            <text x="205" y="196">$1,000</text>
+            <text x="301" y="196">$2,000</text>
+            <text x="397" y="196">$3,000</text>
+          </g>
+
+          <!-- Framing -->
+          <text x="100" y="38" font-size="11" font-weight="600" fill="#334155" text-anchor="end">Framing</text>
+          <rect x="110" y="27" width="62" height="9" rx="2" fill="#94a3b8" />
+          <rect x="110" y="38" width="57" height="9" rx="2" fill="#16a34a" />
+          <text x="174" y="46" font-size="10" font-weight="600" fill="#15803d">$595</text>
+
+          <!-- XPS Foam -->
+          <text x="100" y="70" font-size="11" font-weight="600" fill="#334155" text-anchor="end">XPS Barrier</text>
+          <rect x="110" y="59" width="118" height="9" rx="2" fill="#94a3b8" />
+          <rect x="110" y="70" width="107" height="9" rx="2" fill="#16a34a" />
+          <text x="224" y="78" font-size="10" font-weight="600" fill="#15803d">$1,115</text>
+
+          <!-- Drywall Panels -->
+          <text x="100" y="102" font-size="11" font-weight="600" fill="#334155" text-anchor="end">Drywall</text>
+          <rect x="110" y="91" width="88" height="9" rx="2" fill="#94a3b8" />
+          <rect x="110" y="102" width="75" height="9" rx="2" fill="#16a34a" />
+          <text x="192" y="110" font-size="10" font-weight="600" fill="#15803d">$779</text>
+
+          <!-- Finish/Fasteners -->
+          <text x="100" y="134" font-size="11" font-weight="600" fill="#334155" text-anchor="end">Finishing</text>
+          <rect x="110" y="123" width="31" height="9" rx="2" fill="#94a3b8" />
+          <rect x="110" y="134" width="30" height="9" rx="2" fill="#16a34a" />
+          <text x="146" y="142" font-size="10" font-weight="600" fill="#15803d">$312</text>
+
+          <!-- Total -->
+          <text x="100" y="165" font-size="11" font-weight="700" fill="#0f172a" text-anchor="end">TOTAL DIY</text>
+          <rect x="110" y="154" width="298" height="10" rx="2" fill="#64748b" />
+          <rect x="110" y="166" width="269" height="10" rx="2" fill="#15803d" />
+          <text x="385" y="175" font-size="10" font-weight="700" fill="#166534">$2,802</text>
+        </svg>
+
+        <div style="display: flex; justify-content: center; gap: 16px; margin-top: 6px; font-size: 11px;">
+          <div style="display: flex; align-items: center; gap: 5px;">
+            <span style="width: 10px; height: 10px; background: #94a3b8; border-radius: 2px;"></span>
+            <span>Single-Unit Retail ($3,110)</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 5px;">
+            <span style="width: 10px; height: 10px; background: #16a34a; border-radius: 2px;"></span>
+            <span style="font-weight: 600; color: #166534;">HD Pro Bulk ($2,802)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Donut Chart: Project Expense Distribution -->
+      <div class="card">
+        <h3 style="font-size: 15px; font-weight: 700; margin-bottom: 4px;">Material Cost Distribution</h3>
+        <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">Turnkey breakdown for 23′ × 26′ space</p>
+
+        <div style="display: flex; align-items: center; justify-content: space-around; gap: 16px;">
+          <svg viewBox="0 0 160 160" width="130" height="130" style="transform: rotate(-90deg);">
+            <!-- Total circumference = 2 * PI * 55 = 345.58 -->
+            <!-- XPS: 40% (138.2) stroke-dasharray="138.2 207.4" stroke-dashoffset="0" -->
+            <circle cx="80" cy="80" r="55" fill="none" stroke="#0284c7" stroke-width="24"
+                    stroke-dasharray="138.2 207.4" stroke-dashoffset="0" />
+            <!-- Drywall: 28% (96.8) stroke-dashoffset="-138.2" -->
+            <circle cx="80" cy="80" r="55" fill="none" stroke="#d97706" stroke-width="24"
+                    stroke-dasharray="96.8 248.8" stroke-dashoffset="-138.2" />
+            <!-- Framing: 21% (72.6) stroke-dashoffset="-235.0" -->
+            <circle cx="80" cy="80" r="55" fill="none" stroke="#16a34a" stroke-width="24"
+                    stroke-dasharray="72.6 273.0" stroke-dashoffset="-235.0" />
+            <!-- Finish/Fasteners: 11% (38.0) stroke-dashoffset="-307.6" -->
+            <circle cx="80" cy="80" r="55" fill="none" stroke="#64748b" stroke-width="24"
+                    stroke-dasharray="38.0 307.6" stroke-dashoffset="-307.6" />
+          </svg>
+
+          <div style="display: flex; flex-direction: column; gap: 8px; font-size: 12px;">
+            <div style="display: flex; align-items: center; gap: 6px;">
+              <span style="width: 10px; height: 10px; background: #0284c7; border-radius: 2px;"></span>
+              <span><strong>40%</strong> XPS Barrier ($1,115)</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 6px;">
+              <span style="width: 10px; height: 10px; background: #d97706; border-radius: 2px;"></span>
+              <span><strong>28%</strong> Drywall Panels ($779)</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 6px;">
+              <span style="width: 10px; height: 10px; background: #16a34a; border-radius: 2px;"></span>
+              <span><strong>21%</strong> Wall Framing ($595)</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 6px;">
+              <span style="width: 10px; height: 10px; background: #64748b; border-radius: 2px;"></span>
+              <span><strong>11%</strong> Mud, Tape & Glue ($312)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Complete Itemized Bill of Materials -->
+    <div class="avoid-break">
+      <h2 style="font-size: 18px; font-weight: 700; margin-bottom: 12px;">Itemized Bill of Materials & Pricing Schedule</h2>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Phase / Component</th>
+              <th>Material & Specification</th>
+              <th>HD Model / SKU</th>
+              <th class="text-center">Quantity</th>
+              <th class="text-right">Unit Retail</th>
+              <th class="text-right">Bulk Tier</th>
+              <th class="text-right">Total Cost</th>
+            </tr>
+          </thead>
+          <tbody id="materials-tbody">
+            <tr>
+              <td class="font-semibold">Framing: Bottom Plate</td>
+              <td>
+                2×4×8' #2 Ground Contact Pressure-Treated
+                <div class="item-desc">Required against concrete slab; resists moisture rot & insects per IRC.</div>
+              </td>
+              <td class="font-mono">#1001753849</td>
+              <td class="text-center">13 boards</td>
+              <td class="text-right">$4.58</td>
+              <td class="text-right">$4.58 (&lt;100)</td>
+              <td class="text-right font-semibold" id="row-pt">$59.54</td>
+            </tr>
+            <tr>
+              <td class="font-semibold">Framing: Top Plate</td>
+              <td>
+                2×4×8' SPF #2 Premium KD-HT Stud
+                <div class="item-desc">Fastened directly to overhead floor joists or ladder blocking.</div>
+              </td>
+              <td class="font-mono">#161640</td>
+              <td class="text-center">13 boards</td>
+              <td class="text-right">$3.85</td>
+              <td class="text-right" style="color: var(--success); font-weight: 600;">$3.47 (50+)</td>
+              <td class="text-right font-semibold" id="row-top-plate">$45.11</td>
+            </tr>
+            <tr>
+              <td class="font-semibold">Framing: Wall Studs</td>
+              <td>
+                2×4×8' (or 92-5/8" precut) SPF KD-HT (16" o.c.)
+                <div class="item-desc">74 studs in field + 8 for 4 corners + 6 partition/cutoffs.</div>
+              </td>
+              <td class="font-mono">#161640</td>
+              <td class="text-center">88 studs</td>
+              <td class="text-right">$3.85</td>
+              <td class="text-right" style="color: var(--success); font-weight: 600;">$3.47 (50+)</td>
+              <td class="text-right font-semibold" id="row-studs">$305.36</td>
+            </tr>
+            <tr>
+              <td class="font-semibold">Framing: Fireblocking</td>
+              <td>
+                2×4×8' SPF Blocking + Great Stuff Foam (4 cans)
+                <div class="item-desc">Mandatory IRC R302.11 firestop every 10' and at top-plate rim bays.</div>
+              </td>
+              <td class="font-mono">#161640 / #100052</td>
+              <td class="text-center">12 pcs + 4 cans</td>
+              <td class="text-right">$3.85 / $7.98</td>
+              <td class="text-right" style="color: var(--success); font-weight: 600;">$3.47 (50+)</td>
+              <td class="text-right font-semibold" id="row-fireblock">$73.56</td>
+            </tr>
+            <tr>
+              <td class="font-semibold">Framing: Anchors & Gasket</td>
+              <td>
+                Tapcon 1/4"×2-3/4" (75-ct) + FoamSealR Sill Gasket
+                <div class="item-desc">Sill gasket stops slab moisture wicking; Tapcons anchor bottom plate every 24"–32".</div>
+              </td>
+              <td class="font-mono">#24390 / #100067</td>
+              <td class="text-center">1 box + 2 rolls</td>
+              <td class="text-right">$26.97 / $8.98</td>
+              <td class="text-right">Standard</td>
+              <td class="text-right font-semibold">$44.93</td>
+            </tr>
+            <tr>
+              <td class="font-semibold">Framing: Nails & Adhesive</td>
+              <td>
+                3" 16d Framing Nails (5 lb) + PL Premium 3X (4 tubes)
+                <div class="item-desc">Polyurethane glue bed under PT plate eliminates air drafts & slab rocking.</div>
+              </td>
+              <td class="font-mono">#16D5LB / #1390595</td>
+              <td class="text-center">1 box + 4 tubes</td>
+              <td class="text-right">$24.98 / $11.48</td>
+              <td class="text-right" style="color: var(--success); font-weight: 600;">$10.48/tube case</td>
+              <td class="text-right font-semibold" id="row-plate-glue">$66.90</td>
+            </tr>
+            <tr id="row-foam-container">
+              <td class="font-semibold" style="color: #0369a1;">Foundation Barrier</td>
+              <td>
+                <span id="foam-name-cell">FOAMULAR NGX XPS 1.5" R-7.5 (4'×8' sheets)</span>
+                <div class="item-desc">Prevents 52°F concrete from condensing summer moisture; stops hidden rot.</div>
+              </td>
+              <td class="font-mono" id="foam-sku-cell">#100297916</td>
+              <td class="text-center" id="foam-qty-cell">25 sheets</td>
+              <td class="text-right" id="foam-retail-cell">$44.98</td>
+              <td class="text-right" style="color: var(--success); font-weight: 600;" id="foam-bulk-cell">$40.48 (10+)</td>
+              <td class="text-right font-semibold" id="row-foam-cost">$1,012.00</td>
+            </tr>
+            <tr id="row-foam-supplies">
+              <td class="font-semibold" style="color: #0369a1;">Barrier Glue & Tape</td>
+              <td>
+                PL 300 VOC Latex (10 tubes) + 3M 8067 Tape (3 rolls)
+                <div class="item-desc">Non-solvent adhesive won't melt polystyrene; tape creates continuous vapor plane.</div>
+              </td>
+              <td class="font-mono" id="1421990 / #203110052">#1421990 / #203110052</td>
+              <td class="text-center">10 tubes + 3 rolls</td>
+              <td class="text-right">$6.48 / $14.98</td>
+              <td class="text-right" style="color: var(--success); font-weight: 600;">$5.85/tube case</td>
+              <td class="text-right font-semibold" id="row-foam-glue-cost">$103.44</td>
+            </tr>
+            <tr>
+              <td class="font-semibold" style="color: #d97706;">Ceiling Drywall</td>
+              <td>
+                1/2" × 4' × 8' USG Sheetrock UltraLight (598 sq ft + 10%)
+                <div class="item-desc">Pre-engineered sag-resistant core; hang perpendicular to ceiling joists.</div>
+              </td>
+              <td class="font-mono">#202530243</td>
+              <td class="text-center">21 sheets</td>
+              <td class="text-right">$15.58</td>
+              <td class="text-right" style="color: var(--success); font-weight: 600;">$13.24 (34+)</td>
+              <td class="text-right font-semibold" id="row-ceiling-cost">$278.04</td>
+            </tr>
+            <tr>
+              <td class="font-semibold" style="color: #d97706;">Wall Drywall</td>
+              <td>
+                <span id="wall-drywall-name">1/2" × 4' × 8' USG Sheetrock Mold Tough</span>
+                <div class="item-desc">Water/mold-resistant core & face paper; hold 1/2" off concrete slab.</div>
+              </td>
+              <td class="font-mono" id="wall-drywall-sku">#203768542</td>
+              <td class="text-center">27 sheets</td>
+              <td class="text-right" id="wall-drywall-retail">$21.85</td>
+              <td class="text-right" style="color: var(--success); font-weight: 600;" id="wall-drywall-bulk">$18.57 (34+)</td>
+              <td class="text-right font-semibold" id="row-wall-cost">$501.39</td>
+            </tr>
+            <tr>
+              <td class="font-semibold">Drywall Screws & Glue</td>
+              <td>
+                Grip-Rite 1-1/4" Coarse (6 lb) + Power Grab (7 tubes)
+                <div class="item-desc">Screws 12" on ceiling, 16" on walls; adhesive eliminates fastener pops.</div>
+              </td>
+              <td class="font-mono">#114CDWS5 / #1588880</td>
+              <td class="text-center">~1,920 screws + 7 tubes</td>
+              <td class="text-right">$27.46 / $6.48</td>
+              <td class="text-right" style="color: var(--success); font-weight: 600;">$5.85/tube case</td>
+              <td class="text-right font-semibold" id="row-drywall-fasteners">$68.41</td>
+            </tr>
+            <tr>
+              <td class="font-semibold">Joint Compound & Tape</td>
+              <td>
+                Easy Sand 45/90 (2 bags) + Plus 3 (3 pails) + FibaFuse (750')
+                <div class="item-desc">Setting hot mud for bedding tape; Plus 3 for feathering 2nd/3rd coats.</div>
+              </td>
+              <td class="font-mono">#384210 / #381466 / #100527</td>
+              <td class="text-center">2 bags + 3 pails + 750'</td>
+              <td class="text-right">$20.98 / $22.48 / $26.96</td>
+              <td class="text-right">Standard</td>
+              <td class="text-right font-semibold">$136.36</td>
+            </tr>
+            <tr>
+              <td class="font-semibold">Corner Beads & Primer</td>
+              <td>
+                8-ft Beads (8 pcs) + KILZ PVA Primer (5 gal) + Sanding Pack
+                <div class="item-desc">PVA seals ~1,400 sq ft surface before paint; beads for beam & duct soffits.</div>
+              </td>
+              <td class="font-mono">#CB8 / #L204211 / #SPACK</td>
+              <td class="text-center">8 pcs + 5 gal + kit</td>
+              <td class="text-right">$23.84 / $58.00 / $25.00</td>
+              <td class="text-right">Standard</td>
+              <td class="text-right font-semibold">$106.84</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr style="background: #f8fafc; font-size: 14px;">
+              <td colspan="6" class="font-semibold" style="text-align: right; padding-right: 14px;">TOTAL TURNKEY DIY MATERIALS:</td>
+              <td class="text-right font-semibold" style="color: var(--success); font-size: 16px;" id="table-grand-total">$2,801.88</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+
+    <!-- Construction Sequence & Tool Checklist -->
+    <div class="grid-2 avoid-break" style="margin-bottom: 24px;">
+      <!-- 4-Step Execution Sequence -->
+      <div class="card">
+        <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 12px;">Step-by-Step Construction Sequence</h3>
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <div class="step-card">
+            <div class="step-num">Step 1</div>
+            <div class="step-title">Foam Barrier & Moisture Seal</div>
+            <div class="step-desc">
+              Glue 25 sheets of 1.5″ FOAMULAR XPS directly to concrete with PL 300 adhesive. Seal every vertical and horizontal seam tightly with 3M 8067 / Tuck Tape.
+            </div>
+          </div>
+          <div class="step-card">
+            <div class="step-num">Step 2</div>
+            <div class="step-title">Snap Lines, Sill Gasket & Plates</div>
+            <div class="step-desc">
+              Snap chalk lines 4″ off foam. Lay closed-cell sill gasket under pressure-treated bottom plates and anchor into slab with Tapcon screws every 24″–32″. Fasten SPF top plate to joists above.
+            </div>
+          </div>
+          <div class="step-card">
+            <div class="step-num">Step 3</div>
+            <div class="step-title">Plumb Studs & Code Fireblocking</div>
+            <div class="step-desc">
+              Toe-nail 88 studs at 16″ on-center (measure each board; floors slope). Install 2×4 horizontal fireblocking every 10′ and seal cavity tops to ceiling joists with orange firebreak foam (IRC R302.11).
+            </div>
+          </div>
+          <div class="step-card">
+            <div class="step-num">Step 4</div>
+            <div class="step-title">Drywall Ceiling, Walls & Finish</div>
+            <div class="step-desc">
+              Hang 21 ceiling panels first using panel hoist. Hang 27 wall panels horizontally, holding 1/2″ above concrete slab. Finish with 3 coats (Easy Sand tape coat + Plus 3 skims) and PVA primer.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Required Tool Checklist & Rental Guide -->
+      <div class="card">
+        <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 12px;">Equipment Rentals & Specialized Tools</h3>
+        <div style="display: flex; flex-direction: column; gap: 14px; font-size: 13px; color: var(--text-muted);">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+              <strong style="color: var(--text-main);">SDS-Plus Rotary Hammer Drill</strong>
+              <span class="badge badge-primary">Rental: $20–$25 / Day</span>
+            </div>
+            <div>Drilling 35+ holes into a cured concrete slab with a cordless drill takes hours and destroys masonry bits. An SDS-Plus rotary hammer punches each 1/4″ Tapcon pilot hole in under 5 seconds.</div>
+          </div>
+
+          <div style="border-top: 1px solid var(--border); padding-top: 10px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+              <strong style="color: var(--text-main);">Drywall Panel Hoist / Lift</strong>
+              <span class="badge badge-primary">Rental: $35–$40 / Day</span>
+            </div>
+            <div>Holding 21 ceiling sheets overhead across 600 sq ft while driving screws is physically grueling and dangerous without a mechanical lift. Essential for clean butt joints.</div>
+          </div>
+
+          <div style="border-top: 1px solid var(--border); padding-top: 10px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+              <strong style="color: var(--text-main);">Self-Leveling Cross-Line Laser</strong>
+              <span class="badge badge-info">Tool Purchase / Rental</span>
+            </div>
+            <div>For a 26-foot run, a green cross-line laser makes plumbing top and bottom plates and snapping long reference lines fast and foolproof.</div>
+          </div>
+
+          <div style="border-top: 1px solid var(--border); padding-top: 10px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+              <strong style="color: var(--text-main);">Taping & Finishing Hand Tools</strong>
+              <span class="badge badge-warning">Tool Pack: ~$60</span>
+            </div>
+            <div>Mud pan, 6″ flexible taping knife, 10″ and 12″ curved finishing trowels, drywall screw dimpler bit, and 9″ pole sander with dust-resistant mesh screens.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Kansas City Climate & Technical Considerations -->
+    <div class="card avoid-break" style="margin-bottom: 24px;">
+      <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 12px;">Kansas City Climate Zone 4A/5A Technical & Code Notes</h3>
+      <div class="grid-3" style="gap: 16px; font-size: 13px; color: var(--text-muted); margin-bottom: 0;">
+        <div>
+          <strong style="color: var(--text-main); display: block; margin-bottom: 4px;">1. Condensation & Dew Point</strong>
+          In Kansas City, underground soil stays at ~52°F year-round. Summer basement air at 70°F with 65% RH has a dew point of 57°F. Without continuous 1.5″+ XPS rigid foam, water vapor permeates cavities and condenses into liquid against bare concrete, creating severe hidden mold.
+        </div>
+        <div>
+          <strong style="color: var(--text-main); display: block; margin-bottom: 4px;">2. Beam & Soffit Framing</strong>
+          A 23′ × 26′ span exceeds standard 2×10 / 2×12 lumber capabilities. Your room will feature a central steel I-beam or LVL girder with 1–2 steel lally columns. Plan to frame 2×2 or 2×4 ladder soffits around that girder and main HVAC duct trunks before hanging ceiling board (8 corner beads included).
+        </div>
+        <div>
+          <strong style="color: var(--text-main); display: block; margin-bottom: 4px;">3. Turnkey Economics</strong>
+          A Kansas City framing and drywall sub typically charges $12–$15/LF for framing and $2.75–$3.50/sq ft for drywall hanging and Level 4 finish ($5,500 – $7,200 turnkey). Doing it yourself with bulk materials ($2,802) plus tool rentals ($200) yields <strong>over $3,500 in savings</strong>.
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer / Order Checklist Note -->
+    <footer style="margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 12px; color: var(--text-muted); text-align: center;">
+      Home Depot Kansas City Pricing Analysis &bull; Benchmarked against Stores #3002 (Midtown KC) & #3017 (KCK) &bull; 23′ × 26′ Spec (98 LF Wall &bull; 598 sq ft Ceiling &bull; 1,520 sq ft Board Total)
+    </footer>
+  </div>
+
+  <script>
+    // State variables
+    let currentPricing = 'bulk';
+    let currentFoam = '1.5';
+    let currentBoard = 'moisture';
+
+    // Pricing tables
+    const prices = {
+      spf: { retail: 3.85, bulk: 3.47 },
+      pt: 4.58,
+      foam15: { retail: 44.98, bulk: 40.48 },
+      foam20: { retail: 62.48, bulk: 56.23 },
+      ceiling: { retail: 15.58, bulk: 13.24 },
+      moisture: { retail: 21.85, bulk: 18.57 },
+      standard: { retail: 15.58, bulk: 13.24 },
+      foamGlue: { retail: 6.48, bulk: 5.85 },
+      plateGlue: { retail: 11.48, bulk: 10.48 },
+      drywallGlue: { retail: 6.48, bulk: 5.85 }
+    };
+
+    function setPricingMode(mode) {
+      currentPricing = mode;
+      document.getElementById('btn-bulk').className = mode === 'bulk' ? 'btn-toggle active' : 'btn-toggle';
+      document.getElementById('btn-retail').className = mode === 'retail' ? 'btn-toggle active' : 'btn-toggle';
+      calculateAndUpdate();
+    }
+
+    function setFoamType(type) {
+      currentFoam = type;
+      document.getElementById('btn-foam-15').className = type === '1.5' ? 'btn-toggle active' : 'btn-toggle';
+      document.getElementById('btn-foam-20').className = type === '2.0' ? 'btn-toggle active' : 'btn-toggle';
+      document.getElementById('btn-foam-none').className = type === 'none' ? 'btn-toggle active' : 'btn-toggle';
+      calculateAndUpdate();
+    }
+
+    function setBoardType(type) {
+      currentBoard = type;
+      document.getElementById('btn-board-moisture').className = type === 'moisture' ? 'btn-toggle active' : 'btn-toggle';
+      document.getElementById('btn-board-standard').className = type === 'standard' ? 'btn-toggle active' : 'btn-toggle';
+      calculateAndUpdate();
+    }
+
+    function calculateAndUpdate() {
+      const isBulk = currentPricing === 'bulk';
+      const spfUnit = isBulk ? prices.spf.bulk : prices.spf.retail;
+
+      // 1. Framing
+      const ptTotal = 13 * prices.pt;
+      const topPlateTotal = 13 * spfUnit;
+      const studsTotal = 88 * spfUnit;
+      const fireblockLumber = 12 * spfUnit;
+      const fireblockFoam = 4 * 7.98;
+      const fireblockTotal = fireblockLumber + fireblockFoam;
+      const anchorsGasket = 26.97 + (2 * 8.98);
+      const nails = 24.98;
+      const plateGlue = 4 * (isBulk ? prices.plateGlue.bulk : prices.plateGlue.retail);
+      const framingNailsGlue = nails + plateGlue;
+
+      const framingSubtotal = ptTotal + topPlateTotal + studsTotal + fireblockTotal + anchorsGasket + framingNailsGlue;
+
+      // 2. Foam
+      let foamCost = 0;
+      let foamGlueCost = 0;
+      const foamTape = 3 * 14.98;
+      if (currentFoam === '1.5') {
+        const u = isBulk ? prices.foam15.bulk : prices.foam15.retail;
+        foamCost = 25 * u;
+        foamGlueCost = 10 * (isBulk ? prices.foamGlue.bulk : prices.foamGlue.retail) + foamTape;
+      } else if (currentFoam === '2.0') {
+        const u = isBulk ? prices.foam20.bulk : prices.foam20.retail;
+        foamCost = 25 * u;
+        foamGlueCost = 10 * (isBulk ? prices.foamGlue.bulk : prices.foamGlue.retail) + foamTape;
+      }
+      const insulationSubtotal = foamCost + foamGlueCost;
+
+      // 3. Drywall
+      const ceilingUnit = isBulk ? prices.ceiling.bulk : prices.ceiling.retail;
+      const ceilingTotal = 21 * ceilingUnit;
+
+      const wallUnit = currentBoard === 'moisture'
+        ? (isBulk ? prices.moisture.bulk : prices.moisture.retail)
+        : (isBulk ? prices.standard.bulk : prices.standard.retail);
+      const wallTotal = 27 * wallUnit;
+
+      const drywallScrews = 27.46;
+      const drywallGlue = 7 * (isBulk ? prices.drywallGlue.bulk : prices.drywallGlue.retail);
+      const drywallFasteners = drywallScrews + drywallGlue;
+
+      // 4. Mud & Finish
+      const mud = (2 * 20.98) + (3 * 22.48) + 26.96;
+      const finish = 23.84 + 58.00 + 25.00;
+      const finishingSubtotal = mud + finish;
+
+      const grandTotal = framingSubtotal + insulationSubtotal + ceilingTotal + wallTotal + drywallFasteners + finishingSubtotal;
+
+      // Update UI elements
+      document.getElementById('stat-grand-total').innerText = '$' + grandTotal.toFixed(2);
+      document.getElementById('table-grand-total').innerText = '$' + grandTotal.toFixed(2);
+      document.getElementById('stat-framing').innerText = '$' + framingSubtotal.toFixed(2);
+      document.getElementById('stat-insulation').innerText = '$' + insulationSubtotal.toFixed(2);
+      document.getElementById('stat-drywall').innerText = '$' + (ceilingTotal + wallTotal + drywallFasteners + finishingSubtotal).toFixed(2);
+
+      // Table rows
+      document.getElementById('row-top-plate').innerText = '$' + topPlateTotal.toFixed(2);
+      document.getElementById('row-studs').innerText = '$' + studsTotal.toFixed(2);
+      document.getElementById('row-fireblock').innerText = '$' + fireblockTotal.toFixed(2);
+      document.getElementById('row-plate-glue').innerText = '$' + framingNailsGlue.toFixed(2);
+
+      // Foam row visibility & pricing
+      const foamRow = document.getElementById('row-foam-container');
+      const foamSuppliesRow = document.getElementById('row-foam-supplies');
+      if (currentFoam === 'none') {
+        foamRow.style.display = 'none';
+        foamSuppliesRow.style.display = 'none';
+      } else {
+        foamRow.style.display = '';
+        foamSuppliesRow.style.display = '';
+        document.getElementById('foam-name-cell').innerText = currentFoam === '1.5'
+          ? 'FOAMULAR NGX XPS 1.5" R-7.5 (4\'×8\' sheets)'
+          : 'FOAMULAR NGX XPS 2.0" R-10 (4\'×8\' sheets)';
+        document.getElementById('foam-sku-cell').innerText = currentFoam === '1.5' ? '#100297916' : '#315197962';
+        document.getElementById('foam-retail-cell').innerText = currentFoam === '1.5' ? '$44.98' : '$62.48';
+        document.getElementById('foam-bulk-cell').innerText = currentFoam === '1.5' ? '$40.48 (10+)' : '$56.23 (10+)';
+        document.getElementById('row-foam-cost').innerText = '$' + foamCost.toFixed(2);
+        document.getElementById('row-foam-glue-cost').innerText = '$' + foamGlueCost.toFixed(2);
+      }
+
+      // Ceiling & Wall
+      document.getElementById('row-ceiling-cost').innerText = '$' + ceilingTotal.toFixed(2);
+      document.getElementById('wall-drywall-name').innerText = currentBoard === 'moisture'
+        ? '1/2" × 4\' × 8\' USG Sheetrock Mold Tough'
+        : '1/2" × 4\' × 8\' USG Sheetrock UltraLight';
+      document.getElementById('wall-drywall-sku').innerText = currentBoard === 'moisture' ? '#203768542' : '#202530243';
+      document.getElementById('wall-drywall-retail').innerText = currentBoard === 'moisture' ? '$21.85' : '$15.58';
+      document.getElementById('wall-drywall-bulk').innerText = currentBoard === 'moisture' ? '$18.57 (34+)' : '$13.24 (34+)';
+      document.getElementById('row-wall-cost').innerText = '$' + wallTotal.toFixed(2);
+      document.getElementById('row-drywall-fasteners').innerText = '$' + drywallFasteners.toFixed(2);
+    }
+  </script>
+</body>
+</html>
