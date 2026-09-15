@@ -1,3 +1,9 @@
+---
+layout: default
+title: "23′ × 26′ Basement Framing & Drywall Breakdown"
+permalink: /drywall-notes/
+---
+
 # 23′ × 26′ Basement Framing & Drywall Breakdown
 **Home Depot Kansas City Metro Takeoff & Pro Bulk Pricing Analysis**  
 *Benchmarked against Store #3002 (Midtown KC, Broadway Blvd) & Store #3017 (KCK)*
